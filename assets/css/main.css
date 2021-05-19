@@ -1,3 +1,5 @@
+@import url('http://fonts.cdnfonts.com/css/graphik');
+
 @font-face {
     font-family: "Gelion";
     src: url("../fonts/Gelion/Gelion-Regular.ttf"); /* IE9*/
@@ -6,7 +8,7 @@
 }
 
 *{
-    font-family: 'Gelion';
+    font-family: 'Graphik', sans-serif;
     font-size: 16px;
     line-height: 18px;
     padding: 0;
