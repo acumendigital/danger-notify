@@ -1,5 +1,6 @@
 <template>
   <div>
+    <customerDetailModal v-if="showDetail" @close="showDetail = false" />
     <div class="container">
       <h3 class="heading">Customers</h3>
       <div class="search">
@@ -41,7 +42,9 @@
             alt=""
           />
         </div>
-        <div class="green-btn" role="button">Refine Search</div>
+        <div class="green-btn" role="button" @click="showDetail = true">
+          Refine Search
+        </div>
       </div>
       <div class="table-div">
         <p class="table-top-text">All Customers (1028)</p>
@@ -127,6 +130,7 @@ export default {
           request: 37,
         },
       ],
+      showDetail: false,
     }
   },
 }
@@ -161,20 +165,25 @@ export default {
   margin-right: 24px;
   padding-left: 0.7vw;
 }
+input[type='date']::-webkit-inner-spin-button,
+input[type='date']::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
 .calendar-from {
   position: absolute;
   right: 38vw;
-  top: 58.4%;
+  top: 53.6%;
 }
 .calendar-to {
   position: absolute;
   right: 23.79vw;
-  top: 58.4%;
+  top: 53.6%;
 }
 .search-icon {
   position: absolute;
   left: 24vw;
-  top: 57.7%;
+  top: 53.4%;
 }
 .search {
   width: 74vw;
