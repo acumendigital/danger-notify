@@ -49,7 +49,8 @@ html {
 
 .main-section {
   margin: 0 0 0 245px;
-  height: 1400px;
-  background-color: tomato;
+  height: auto;
+  padding-left: 2.5vw;
+  padding-bottom: 20vh;
 }
 </style>
