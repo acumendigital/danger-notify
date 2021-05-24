@@ -23,6 +23,7 @@ export default {
 <style>
 html {
   word-spacing: 1px;
+  line-height: 18px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -48,8 +49,6 @@ html {
 }
 
 .main-section {
-  margin: 0 0 0 245px;
-  height: 1400px;
-  background-color: tomato;
+  margin: 20px 0 0 245px;
 }
 </style>

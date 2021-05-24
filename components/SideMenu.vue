@@ -76,6 +76,7 @@ export default {}
   color: #6f8a9c;
   width: 100%;
   padding: 21px 16px;
+  font-size: 15px;
 }
 
 a.nuxt-link-exact-active .menu,
