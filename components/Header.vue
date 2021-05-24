@@ -31,7 +31,6 @@ export default {}
   justify-content: space-between;
   padding: 30px 45px;
   background-color: white;
-  z-index: 2;
   height: 90px;
 }
 
@@ -47,8 +46,10 @@ export default {}
   font-weight: 600;
 }
 
-.notification {
+.notification img {
   margin-right: 32px;
+  width: 25px;
+  height: 25px;
 }
 
 .user {
@@ -58,5 +59,7 @@ export default {}
 
 .user img {
   margin-left: 12px;
+  width: 35px;
+  height: 35px;
 }
 </style>
