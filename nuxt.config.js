@@ -47,15 +47,15 @@ export default {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
-          enforce: "pre",
+          enforce: 'pre',
           test: /\.(js|vue)$/,
-          loader: "eslint-loader",
+          loader: 'eslint-loader',
           exclude: /(node_modules)/,
           options: {
-            fix: true
-          }
-        });
+            fix: true,
+          },
+        })
       }
-    }
+    },
   },
 }
