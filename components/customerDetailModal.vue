@@ -35,7 +35,10 @@
               v-for="(tab, index) in tab_item"
               :key="index"
               class="tabs__item"
-              :class="{ tabs__item_active: currentTab === index }"
+              :class="{
+                'tabs__item_active:focus': currentTab === index,
+                first_active: justLoaded,
+              }"
               @click="currentTab = index"
             >
               {{ tab }}
@@ -63,12 +66,11 @@
                 <p class="value">
                   {{ head.category }}
                 </p>
-                <hr />
               </div>
             </div>
           </div>
           <div v-if="currentTab === 1" class="pending">
-            <div v-for="head in heading2" :key="head" class="active-tab">
+            <div v-for="head in heading2" :key="head" class="pending-tab">
               <div class="left-value">
                 <p v-for="key in tableKey" :key="key" class="value">
                   {{ key }}:
@@ -90,13 +92,11 @@
                 </p>
                 <p class="value">Decline</p>
                 <div class="spacer"></div>
-                <hr />
-                <div class="spacer"></div>
               </div>
             </div>
           </div>
           <div v-if="currentTab === 2" class="completed">
-            <div v-for="head in heading3" :key="head" class="active-tab">
+            <div v-for="head in heading3" :key="head" class="completed-tab">
               <div class="left-value">
                 <p v-for="key in tableKey2" :key="key" class="value">
                   {{ key }}:
@@ -122,8 +122,6 @@
                   {{ head.end_date }}
                 </p>
                 <div class="spacer"></div>
-                <hr />
-                <div class="spacer"></div>
               </div>
             </div>
           </div>
@@ -139,6 +137,7 @@ export default {
     return {
       showBasicDetail: '',
       showFullDetail: false,
+      currentTab: 0,
       heading1: [
         'Fullname',
         'Email',
@@ -156,7 +155,6 @@ export default {
         94,
       ],
       tab_item: ['Active Requests', 'Pending Requests', 'Completed Requests'],
-      currentTab: 0,
       heading2: [
         {
           candidate_name: 'Precious Makinde',
@@ -204,7 +202,7 @@ export default {
         'Hire Type',
         'Category',
         'Subscription Type',
-        'End Date:',
+        'End Date',
       ],
     }
   },
@@ -219,6 +217,7 @@ export default {
     showFull() {
       this.showBasicDetail = false
       this.showFullDetail = true
+      this.currentTab = 0
     },
     closeModal() {
       this.$emit('close')
@@ -282,6 +281,7 @@ button {
   background: #f9fafb;
   border: 1px solid #e1edfe;
   border-radius: 8px;
+  cursor: default;
 }
 .green {
   border-right: 0.5px black;
@@ -389,7 +389,9 @@ button {
   background-color: black;
   transition: transform 0.4s ease, width 0.4s ease;
 }
-.active-tab {
+.active-tab,
+.pending-tab,
+.completed-tab {
   display: flex;
   flex-direction: row;
 }
@@ -403,16 +405,9 @@ button {
   margin-right: 3vw;
 }
 .content-container {
-  margin-top: 3vh;
+  /* margin-top: 3vh; */
   padding-bottom: 6vh;
   position: relative;
-}
-hr {
-  width: 80%;
-  position: absolute;
-  left: 0;
-  height: 1px;
-  color: #e4e4e4;
 }
 
 /* pending request styles */
@@ -436,7 +431,7 @@ hr {
   cursor: pointer;
 }
 .spacer {
-  height: 5vh;
+  height: 3vh;
 }
 .close {
   position: absolute;
@@ -449,4 +444,21 @@ hr {
   padding: 6px 3px 6px 8.5px;
   cursor: pointer;
 }
+.active-tab,
+.pending-tab,
+.completed-tab {
+  border-bottom: 1.5px solid #e4e4e4;
+  width: 90%;
+  margin-top: 3vh;
+  padding-bottom: 2vh;
+}
+.active-tab:nth-last-child(1),
+.pending-tab:nth-last-child(1),
+.completed-tab:nth-last-child(1) {
+  border-bottom: none;
+}
+/* .tabs button:nth-child(1) {
+  color: #00a69d;
+  border-bottom: 1px solid #00a69d;
+} */
 </style>
