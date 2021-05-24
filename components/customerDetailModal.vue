@@ -249,7 +249,7 @@ export default {
   display: flex;
   flex-direction: column;
   border-radius: 8px;
-  width: 638px;
+  width: 46vw;
   padding: 60px 0 8vh 101px;
   height: 90vh;
 }
