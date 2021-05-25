@@ -2,9 +2,9 @@
   <div class="candidate">
     <div class="content">
       <div class="top-section">
-        <h6>Candidates</h6>
-        <button class="add-candidate" @click="candidateRegistration = true">
-          Add Candidates
+        <h6>Reviews</h6>
+        <button class="add-candidate" @click="candidateReview = true">
+          Add Reviews
         </button>
       </div>
       <div class="filter-search">
@@ -31,14 +31,14 @@
       </div>
       <table>
         <div class="table-top">
-          <p class="table-top-text">All Customers (1028)</p>
+          <p class="table-top-text">All Reviews (1028)</p>
         </div>
         <tr class="table-head">
           <th class="user td-th">User ID</th>
-          <th class="reg-date td-th">Registration Date</th>
           <th class="full-name td-th">Full Name</th>
           <th class="email td-th">Email Address</th>
-          <th class="td-th">Category</th>
+          <th class="category td-th">Category</th>
+          <th class="review td-th">Reviews</th>
         </tr>
         <tr
           v-for="el in tableElements"
@@ -47,81 +47,74 @@
           @click="candidateDetails = true"
         >
           <td class="user td-th">{{ el.userId }}</td>
-          <td class="reg-date td-th">{{ el.regDate }}</td>
           <td class="full-name td-th">{{ el.fullName }}</td>
           <td class="email td-th">{{ el.email }}</td>
           <td class="category td-th">
             {{ el.category }}
           </td>
+          <td class="review td-th">{{ el.review }}</td>
         </tr>
       </table>
     </div>
-    <CandidateDetails
-      v-show="candidateDetails"
-      @close-candidateDetails="candidateDetails = false"
-    />
-    <CandidateRegistration
-      v-show="candidateRegistration"
-      @close-candidateRegistration="candidateRegistration = false"
+    <CandidateReviews
+      v-show="candidateReview"
+      @close-candidateReview="candidateReview = false"
     />
   </div>
 </template>
 
 <script>
-import CandidateDetails from '@/components/Modals/CandidateDetails.vue'
-import CandidateRegistration from '@/components/Modals/CandidateRegistration.vue'
+import CandidateReviews from '@/components/Modals/CandidateReviews.vue'
 export default {
   components: {
-    CandidateDetails,
-    CandidateRegistration,
+    CandidateReviews,
   },
   layout: 'Main',
   data() {
     return {
-      candidateDetails: false,
-      candidateRegistration: false,
+      candidateReview: false,
       tableElements: [
         {
           userId: 'ND1283',
-          regDate: '23.04.2020',
-          fullName: 'Abdul Ifeoma',
+          fullName: 'David Emodot',
           email: 'amaranth@outlook.com',
           category: 'Chef',
+          review: 'Very punctual and attentive to instru....',
         },
         {
           userId: 'ND1283',
-          regDate: '23.04.2020',
-          fullName: 'Abdul Ifeoma',
+          fullName: 'David Emodot',
           email: 'amaranth@outlook.com',
           category: 'Driver',
+          review: 'Very punctual and attentive to instru....',
         },
         {
           userId: 'ND1283',
-          regDate: '23.04.2020',
-          fullName: 'Abdul Ifeoma',
+          fullName: 'David Emodot',
           email: 'amaranth@outlook.com',
           category: 'Cleaner',
+          review: 'Very punctual and attentive to instru....',
         },
         {
           userId: 'ND1283',
-          regDate: '23.04.2020',
-          fullName: 'Abdul Ifeoma',
+          fullName: 'David Emodot',
           email: 'amaranth@outlook.com',
           category: 'Dry Cleaner',
+          review: 'Very punctual and attentive to instru....',
         },
         {
           userId: 'ND1283',
-          regDate: '23.04.2020',
-          fullName: 'Abdul Ifeoma',
+          fullName: 'David Emodot',
           email: 'amaranth@outlook.com',
-          category: 'Butler',
+          category: 'Baby Sitter',
+          review: 'Very punctual and attentive to instru....',
         },
         {
           userId: 'ND1283',
-          regDate: '23.04.2020',
-          fullName: 'Abdul Ifeoma',
+          fullName: 'David Emodot',
           email: 'amaranth@outlook.com',
-          category: 'Chef',
+          category: 'Driver',
+          review: 'Very punctual and attentive to instru....',
         },
       ],
     }
@@ -236,7 +229,6 @@ table {
 tr {
   display: flex;
   padding: 0 40px;
-  cursor: pointer;
 }
 
 th {
@@ -250,14 +242,18 @@ th {
 }
 
 .user {
-  width: 15%;
+  width: 12%;
 }
 
 .email {
   width: 28%;
 }
-/* 
+
 .category {
-  color: rgba(0, 166, 157, 1);
-} */
+  width: 15%;
+}
+
+.review {
+  width: 40%;
+}
 </style>
