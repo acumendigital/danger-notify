@@ -64,10 +64,18 @@
             </div>
             <div class="auth-btn">
               <div class="btn1">
-                <img src="~/assets/images/onBtn.svg" alt="" />
+                <img
+                  :src="require(`~/assets/images/${Onimg}`)"
+                  alt=""
+                  @click="changeBtn1"
+                />
               </div>
               <div class="btjn2">
-                <img src="~/assets/images/offBtn.svg" alt="" />
+                <img
+                  :src="require(`~/assets/images/${Offimg}`)"
+                  alt=""
+                  @click="changeBtn2"
+                />
               </div>
             </div>
           </div>
@@ -90,7 +98,33 @@ export default {
       email: 'SeyiMakinde@gmail.com',
       number: 93739220,
       password: '**********',
+      Onimg: 'onBtn.svg',
+      Offimg: 'offBtn.svg',
+      count: 0,
     }
+  },
+  computed: {
+    counter() {
+      return this.count + 1
+    },
+  },
+  methods: {
+    changeBtn1() {
+      this.count += 1
+      if (this.count % 2 !== 0) {
+        this.Onimg = 'offBtn.svg'
+      } else {
+        this.Onimg = 'onBtn.svg'
+      }
+    },
+    changeBtn2() {
+      this.count += 1
+      if (this.count % 2 !== 0) {
+        this.Offimg = 'onBtn.svg'
+      } else {
+        this.Offimg = 'offBtn.svg'
+      }
+    },
   },
 }
 </script>
