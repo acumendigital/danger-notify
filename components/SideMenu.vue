@@ -37,7 +37,7 @@
           <p>Reviews</p>
         </div></nuxt-link
       >
-      <nuxt-link to="/Settings"
+      <nuxt-link to="/settings"
         ><div class="menu">
           <img src="@/assets/images/settings.svg" alt="home" />
           <p>Settings</p>

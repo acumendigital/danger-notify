@@ -1,6 +1,6 @@
 <template>
   <div>
-    <customerDetailModal v-if="showDetail" @close="showDetail = false" />
+    <customerDetailModal v-if="showDetail" />
     <div class="container">
       <h3 class="heading">Customers</h3>
       <div class="search">
@@ -16,31 +16,41 @@
         </div>
         <div class="form">
           <label for="dates">Registration Date</label>
-          <input
-            id="from-date"
-            type="text"
-            class="from"
-            name="from-date"
-            placeholder="From Date"
-            onfocus="(this.type='date')"
-          />
-          <img
-            src="~/assets/images/calendarIcon.svg"
-            class="calendar-from"
-            alt=""
-          />
-          <input
-            id="to-date"
-            type="text"
-            name="to-date"
-            placeholder="To Date"
-            onfocus="(this.type='date')"
-          />
-          <img
-            src="~/assets/images/calendarIcon.svg"
-            class="calendar-to"
-            alt=""
-          />
+          <div class="from-div">
+            <input
+              id="from-date"
+              ref="fromdate"
+              type="text"
+              class="from"
+              name="from-date"
+              placeholder="From Date"
+              @blur="showDateIcon1"
+              @focus="hideDateIcon1"
+            />
+            <img
+              v-if="!hideIcon1"
+              src="~/assets/images/calendarIcon.svg"
+              class="calendar-from"
+              alt=""
+            />
+          </div>
+          <div class="to-div">
+            <input
+              id="to-date"
+              ref="todate"
+              type="text"
+              name="to-date"
+              placeholder="To Date"
+              @blur="showDateIcon2"
+              @focus="hideDateIcon2"
+            />
+            <img
+              v-if="!hideIcon2"
+              src="~/assets/images/calendarIcon.svg"
+              class="calendar-to"
+              alt=""
+            />
+          </div>
         </div>
         <div class="green-btn" role="button" @click="showDetail = true">
           Refine Search
@@ -79,6 +89,8 @@ export default {
   layout: 'Main',
   data() {
     return {
+      hideIcon1: false,
+      hideIcon2: false,
       tableHead: [
         'UserID',
         'Registration Date',
@@ -133,6 +145,24 @@ export default {
       showDetail: false,
     }
   },
+  methods: {
+    hideDateIcon1() {
+      this.$refs.fromdate.type = 'date'
+      this.hideIcon1 = true
+    },
+    hideDateIcon2() {
+      this.$refs.todate.type = 'date'
+      this.hideIcon2 = true
+    },
+    showDateIcon1() {
+      this.$refs.fromdate.type = 'text'
+      this.hideIcon1 = false
+    },
+    showDateIcon2() {
+      this.$refs.todate.type = 'text'
+      this.hideIcon2 = false
+    },
+  },
 }
 </script>
 
@@ -140,6 +170,7 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
+  margin-left: 3vw;
 }
 #search-btn {
   background: #f9fafb;
@@ -154,7 +185,6 @@ export default {
 }
 #from-date,
 #to-date {
-  position: relative;
   background: #ffffff;
   opacity: 0.5;
   border: 1px solid #d1d1d1;
@@ -164,26 +194,32 @@ export default {
   height: 7.55vh;
   margin-right: 24px;
   padding-left: 0.7vw;
+  padding-right: 0.38vw;
 }
-input[type='date']::-webkit-inner-spin-button,
+.from-div,
+.to-div {
+  display: inline;
+  position: relative;
+}
+/* input[type='date']::-webkit-inner-spin-button,
 input[type='date']::-webkit-calendar-picker-indicator {
   display: none;
   -webkit-appearance: none;
-}
+} */
 .calendar-from {
   position: absolute;
-  right: 38vw;
-  top: 53.6%;
+  right: 3vw;
+  top: 0.2vh;
 }
 .calendar-to {
   position: absolute;
-  right: 23.79vw;
-  top: 53.6%;
+  right: 2.65vw;
+  bottom: 0.3vh;
 }
 .search-icon {
   position: absolute;
-  left: 24vw;
-  top: 53.4%;
+  left: 24.8vw;
+  top: 56.4%;
 }
 .search {
   width: 74vw;
