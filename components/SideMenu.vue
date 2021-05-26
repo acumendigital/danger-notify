@@ -7,31 +7,31 @@
           <p>Dashboard</p>
         </div></nuxt-link
       >
-      <nuxt-link to="/Customers"
+      <nuxt-link to="/customers"
         ><div class="menu">
           <img src="@/assets/images/customer.svg" alt="home" />
           <p>Customers</p>
         </div></nuxt-link
       >
-      <nuxt-link to="/Candidates"
+      <nuxt-link to="/candidates"
         ><div class="menu">
           <img src="@/assets/images/candidate.svg" alt="home" />
           <p>Candidates</p>
         </div></nuxt-link
       >
-      <nuxt-link to="/Requests"
+      <nuxt-link to="/requests"
         ><div class="menu">
           <img src="@/assets/images/interview.svg" alt="home" />
           <p>Requests</p>
         </div></nuxt-link
       >
-      <nuxt-link to="/Payment"
+      <nuxt-link to="/payment"
         ><div class="menu">
           <img src="@/assets/images/credit-card.svg" alt="home" />
           <p>Payment</p>
         </div></nuxt-link
       >
-      <nuxt-link to="/Reviews"
+      <nuxt-link to="/reviews"
         ><div class="menu">
           <img src="@/assets/images/evaluate.svg" alt="home" />
           <p>Reviews</p>

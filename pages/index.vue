@@ -25,29 +25,115 @@
         </div>
       </div>
     </div>
-    <!-- <div class="tabs">
-      <div class="tab-1">Customer</div>
-      <div class="tab-2">Candidates</div>
-    </div> -->
-    <div>
-      <DashboardTable />
-    </div>
+    <table>
+      <div class="table-top">
+        <p class="table-top-text">Resent Sign ups</p>
+        <div class="tabs">
+          <div
+            :class="activeTab.includes('customer-tab') ? 'active' : 'inactive'"
+            class="customer-tab"
+            @click="activeTab = 'customer-tab'"
+          >
+            Customer
+          </div>
+          <div
+            :class="
+              activeTab.includes('candidates-tab') ? 'active' : 'inactive'
+            "
+            class="candidates-tab"
+            @click="activeTab = 'candidates-tab'"
+          >
+            Candidates
+          </div>
+        </div>
+      </div>
+      <div v-show="activeTab == 'customer-tab'" class="tab-1 customer-tab">
+        <tr class="table-head">
+          <th class="user td-th">User ID</th>
+          <th class="reg-date td-th">Registration Date</th>
+          <th class="full-name td-th">Full Name</th>
+          <th class="email td-th">Email Address</th>
+          <th class="td-th">User Type</th>
+        </tr>
+        <tr v-for="el in tableElements" :key="el.userId" class="table-body">
+          <td class="user td-th">{{ el.userId }}</td>
+          <td class="reg-date td-th">{{ el.regDate }}</td>
+          <td class="full-name td-th">{{ el.fullName }}</td>
+          <td class="email td-th">{{ el.email }}</td>
+          <td class="user-type td-th">
+            {{ el.userType }}
+          </td>
+        </tr>
+      </div>
+      <div v-show="activeTab == 'candidates-tab'" class="tab-2">
+        <CandidateTable />
+      </div>
+    </table>
   </div>
 </template>
 
 <script>
 export default {
   layout: 'Main',
+  data() {
+    return {
+      activeTab: 'customer-tab',
+      tableElements: [
+        {
+          userId: 'ND1283',
+          regDate: '23.04.2020',
+          fullName: 'Abdul Ifeoma',
+          email: 'amaranth@outlook.com',
+          userType: 'Customer',
+        },
+        {
+          userId: 'ND1283',
+          regDate: '23.04.2020',
+          fullName: 'Abdul Ifeoma',
+          email: 'amaranth@outlook.com',
+          userType: 'Customer',
+        },
+        {
+          userId: 'ND1283',
+          regDate: '23.04.2020',
+          fullName: 'Abdul Ifeoma',
+          email: 'amaranth@outlook.com',
+          userType: 'Customer',
+        },
+        {
+          userId: 'ND1283',
+          regDate: '23.04.2020',
+          fullName: 'Abdul Ifeoma',
+          email: 'amaranth@outlook.com',
+          userType: 'Customer',
+        },
+        {
+          userId: 'ND1283',
+          regDate: '23.04.2020',
+          fullName: 'Abdul Ifeoma',
+          email: 'amaranth@outlook.com',
+          userType: 'Customer',
+        },
+        {
+          userId: 'ND1283',
+          regDate: '23.04.2020',
+          fullName: 'Abdul Ifeoma',
+          email: 'amaranth@outlook.com',
+          userType: 'Customer',
+        },
+      ],
+    }
+  },
 }
 </script>
 
 <style scoped>
 .dashboard {
-  padding: 74px 64px;
+  padding: 54px 64px;
 }
 
 .welcome-text {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 600;
   color: black;
   margin-bottom: 30px;
@@ -61,7 +147,7 @@ export default {
 
 .card-container {
   display: flex;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .card {
@@ -91,13 +177,92 @@ export default {
 }
 
 /* TABS  */
-/* 
+
 .tabs {
-  float: right;
+  background-color: #f9fafb;
+  display: flex;
+  width: 400px;
+  border-radius: 8px;
+  border: 1px solid #e1edfe;
+}
+
+.customer-tab {
+  border-radius: 8px 0 0 8px;
+}
+.candidates-tab {
+  border-radius: 0 8px 8px 0;
+}
+
+.tabs div {
+  padding: 12px 25px;
+  font-size: 14px;
+  width: 200px;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.tabs div:hover {
+  background-color: #00a69d !important;
+  color: white;
+}
+
+.active {
+  background-color: #00a69d !important;
+  color: white;
+}
+
+/* TABLE  */
+
+table {
+  margin-top: 100px;
+  width: 100%;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.table-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+}
+
+.table-top-text {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.table-head {
+  background-color: #f5f8ff;
+  padding: 0 40px;
+}
+
+tr {
+  display: flex;
+  padding: 0 40px;
+}
+
+th {
+  font-weight: 600;
+}
+
+.td-th {
+  padding: 25px 0;
+  width: 20%;
   display: flex;
 }
 
-.tab-1 {
-  background-color: #00a69d;
-} */
+.user {
+  width: 15%;
+}
+
+.email {
+  width: 28%;
+}
+
+.user-type {
+  color: rgba(247, 148, 29, 1);
+}
 </style>
