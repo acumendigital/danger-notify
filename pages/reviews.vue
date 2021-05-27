@@ -1,5 +1,5 @@
 <template>
-  <div class="candidate">
+  <div class="reviews">
     <div class="content">
       <div class="top-section">
         <h6>Reviews</h6>
@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="filter-search">
-        <div>
+        <div class="search-section">
           <p>What are you looking for ?</p>
           <div class="search-container">
             <img src="@/assets/images/search.svg" alt="search" />
@@ -123,9 +123,9 @@ export default {
 </script>
 
 <style scoped>
-.candidate {
+.reviews {
   padding: 70px 41px;
-  width: 100%;
+  width: 70vw;
 }
 
 .top-section {
@@ -156,8 +156,13 @@ export default {
 
 .filter-search {
   display: flex;
+  justify-content: space-between;
   background-color: white;
   padding: 25px 43px;
+}
+
+.search-section {
+  flex-basis: 33%;
 }
 
 .filter-search p {
@@ -171,7 +176,7 @@ export default {
   border: 1px solid #e1edfe;
   border-radius: 8px;
   background-color: #f9fafb;
-  width: 384px;
+  width: 100%;
   padding: 13px 16px;
   margin-top: 13px;
   margin-right: 13px;
@@ -182,7 +187,7 @@ export default {
   border: none;
   background-color: transparent;
   margin-left: 19px;
-  width: 300px;
+  width: 200px;
 }
 
 #from-date,

@@ -130,6 +130,7 @@ export default {
 <style scoped>
 .dashboard {
   padding: 54px 64px;
+  width: 70vw;
 }
 
 .welcome-text {

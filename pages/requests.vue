@@ -1,8 +1,8 @@
 <template>
-  <div class="candidate">
+  <div class="requests">
     <div class="content">
       <div class="top-section">
-        <h6>Candidates</h6>
+        <h6>Requests</h6>
         <button class="add-candidate" @click="candidateRegistration = true">
           Add Candidates
         </button>
@@ -31,11 +31,11 @@
       </div>
       <table>
         <div class="table-top">
-          <p class="table-top-text">All Customers (1028)</p>
+          <p class="table-top-text">All Requests (1028)</p>
         </div>
         <tr class="table-head">
           <th class="user td-th">User ID</th>
-          <th class="reg-date td-th">Registration Date</th>
+          <th class="request-date td-th">Requests Date</th>
           <th class="full-name td-th">Full Name</th>
           <th class="email td-th">Email Address</th>
           <th class="td-th">Category</th>
@@ -44,10 +44,10 @@
           v-for="el in tableElements"
           :key="el.userId"
           class="table-body"
-          @click="candidateDetails = true"
+          @click="requestDetails = true"
         >
           <td class="user td-th">{{ el.userId }}</td>
-          <td class="reg-date td-th">{{ el.regDate }}</td>
+          <td class="request-date td-th">{{ el.requestDate }}</td>
           <td class="full-name td-th">{{ el.fullName }}</td>
           <td class="email td-th">{{ el.email }}</td>
           <td class="category td-th">
@@ -56,69 +56,62 @@
         </tr>
       </table>
     </div>
-    <CandidateDetails
-      v-show="candidateDetails"
-      @close-candidateDetails="candidateDetails = false"
-    />
-    <CandidateRegistration
-      v-show="candidateRegistration"
-      @close-candidateRegistration="candidateRegistration = false"
+    <RequestDetails
+      v-show="requestDetails"
+      @close-requestDetails="requestDetails = false"
     />
   </div>
 </template>
 
 <script>
-import CandidateDetails from '@/components/Modals/CandidateDetails.vue'
-import CandidateRegistration from '@/components/Modals/CandidateRegistration.vue'
+import RequestDetails from '@/components/Modals/RequestDetails.vue'
 export default {
   components: {
-    CandidateDetails,
-    CandidateRegistration,
+    RequestDetails,
   },
   layout: 'Main',
   data() {
     return {
-      candidateDetails: false,
-      candidateRegistration: false,
+      requestDetails: false,
       tableElements: [
         {
           userId: 'ND1283',
-          regDate: '23.04.2020',
+          requestDate: '23.04.2020',
           fullName: 'Abdul Ifeoma',
           email: 'amaranth@outlook.com',
           category: 'Chef',
         },
         {
           userId: 'ND1283',
-          regDate: '23.04.2020',
+          requestDate: '23.04.2020',
           fullName: 'Abdul Ifeoma',
           email: 'amaranth@outlook.com',
           category: 'Driver',
         },
         {
           userId: 'ND1283',
-          regDate: '23.04.2020',
+          requestDate: '23.04.2020',
           fullName: 'Abdul Ifeoma',
           email: 'amaranth@outlook.com',
           category: 'Cleaner',
         },
         {
           userId: 'ND1283',
-          regDate: '23.04.2020',
+          requestDate: '23.04.2020',
           fullName: 'Abdul Ifeoma',
           email: 'amaranth@outlook.com',
           category: 'Dry Cleaner',
         },
         {
           userId: 'ND1283',
-          regDate: '23.04.2020',
+          requestDate: '23.04.2020',
           fullName: 'Abdul Ifeoma',
           email: 'amaranth@outlook.com',
           category: 'Butler',
         },
         {
           userId: 'ND1283',
-          regDate: '23.04.2020',
+          requestDate: '23.04.2020',
           fullName: 'Abdul Ifeoma',
           email: 'amaranth@outlook.com',
           category: 'Chef',
@@ -130,7 +123,7 @@ export default {
 </script>
 
 <style scoped>
-.candidate {
+.requests {
   padding: 70px 41px;
   width: 70vw;
 }
@@ -171,10 +164,6 @@ export default {
 .search-section {
   flex-basis: 33%;
 }
-/* 
-.date-container {
-  flex-basis: 60%;
-} */
 
 .filter-search p {
   font-size: 15px;
@@ -268,11 +257,5 @@ th {
 /* 
 .category {
   color: rgba(0, 166, 157, 1);
-} */
-
-/* @media only screen and (max-width: 1550px) {
-  .search-section {
-    flex-basis: 10%;
-  }
 } */
 </style>
