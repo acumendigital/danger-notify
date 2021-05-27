@@ -7,26 +7,57 @@
           Add Reviews
         </button>
       </div>
-      <div class="filter-search">
-        <div class="search-section">
-          <p>What are you looking for ?</p>
-          <div class="search-container">
-            <img src="@/assets/images/search.svg" alt="search" />
+      <div class="top-input-div">
+        <div class="form search-box">
+          <label for="search-btn">What are you looking for ?</label>
+          <input
+            id="search-btn"
+            type="search"
+            name="search-btn"
+            placeholder="Search.."
+          />
+          <img src="~/assets/images/search.svg" class="search-icon" alt="" />
+        </div>
+        <div class="form">
+          <label for="dates">Registration Date</label>
+          <div class="from-div">
             <input
-              id="search"
-              type="search"
-              name="search"
-              placeholder="Search ..."
+              id="from-date"
+              ref="fromdate"
+              type="text"
+              class="from"
+              name="from-date"
+              placeholder="From Date"
+              @blur="showDateIcon1"
+              @focus="hideDateIcon1"
+            />
+            <img
+              v-if="!hideIcon1"
+              src="~/assets/images/calendarIcon.svg"
+              class="calendar-from"
+              alt=""
+            />
+          </div>
+          <div class="to-div">
+            <input
+              id="to-date"
+              ref="todate"
+              type="text"
+              name="to-date"
+              placeholder="To Date"
+              @blur="showDateIcon2"
+              @focus="hideDateIcon2"
+            />
+            <img
+              v-if="!hideIcon2"
+              src="~/assets/images/calendarIcon.svg"
+              class="calendar-to"
+              alt=""
             />
           </div>
         </div>
-        <div class="date-container">
-          <p>Registration Date</p>
-          <div>
-            <input id="from-date" type="date" name="date" />
-            <input id="to-date" type="date" name="date" />
-            <button class="refine-search">Refine Search</button>
-          </div>
+        <div class="green-btn" role="button" @click="showDetail = true">
+          Refine Search
         </div>
       </div>
       <table>
@@ -146,7 +177,8 @@ export default {
 .refine-search {
   color: white;
   background-color: #00a69d;
-  padding: 16px 34px;
+  height: 50px;
+  padding: 0 34px;
   border: none;
   border-radius: 8px;
   font-size: 13px;
@@ -154,61 +186,99 @@ export default {
   cursor: pointer;
 }
 
-.filter-search {
+#search-btn {
+  background: #f9fafb;
+  border: 1px solid #e1edfe;
+  box-sizing: border-box;
+  border-radius: 8px;
+  width: 20vw;
+  height: 50px;
+  margin-right: 1vw;
+  position: relative;
+  padding-left: 3vw;
+}
+#from-date,
+#to-date {
+  background: #ffffff;
+  opacity: 0.5;
+  border: 1px solid #d1d1d1;
+  box-sizing: border-box;
+  border-radius: 8px;
+  width: 10vw;
+  height: 50px;
+  margin-right: 24px;
+  padding-left: 0.7vw;
+  padding-right: 0.38vw;
+}
+.from-div,
+.to-div {
+  display: inline;
+  position: relative;
+}
+/* input[type='date']::-webkit-inner-spin-button,
+input[type='date']::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+} */
+.calendar-from {
+  position: absolute;
+  right: 3vw;
+  top: 0.2vh;
+}
+.calendar-to {
+  position: absolute;
+  right: 2.65vw;
+  bottom: 0.3vh;
+}
+.search-icon {
+  position: absolute;
+  left: 0.7vw;
+  top: 56.4%;
+}
+.top-input-div {
+  left: 286px;
+  top: 259px;
+  background: #ffffff;
+  border-radius: 8px;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  background-color: white;
+  align-items: center;
   padding: 25px 43px;
+  margin-top: 35px;
 }
-
-.search-section {
-  flex-basis: 33%;
+.search-box {
+  position: relative;
 }
-
-.filter-search p {
+label {
+  display: block;
+  padding-bottom: 12px;
   font-size: 15px;
   color: black;
 }
-
-.search-container {
+.green-btn {
+  width: 10vw;
+  height: 50px;
+  max-height: 7.45vh;
+  background: #00a69d;
+  border-radius: 8px;
   display: flex;
-  align-content: center;
-  border: 1px solid #e1edfe;
-  border-radius: 8px;
-  background-color: #f9fafb;
-  width: 100%;
-  padding: 13px 16px;
-  margin-top: 13px;
-  margin-right: 13px;
-}
-
-#search {
-  outline: none;
-  border: none;
-  background-color: transparent;
-  margin-left: 19px;
-  width: 200px;
-}
-
-#from-date,
-#to-date {
-  width: 167px;
-  padding: 11px 16px;
-  margin-top: 13px;
-  border: 1px solid #e1edfe;
-  border-radius: 8px;
-  background-color: #f9fafb;
-  margin-right: 24px;
-}
-
-#from-date ::placeholder {
-  font-size: 15px;
+  margin-top: 3%;
+  color: #ffffff;
+  font-family: Graphik;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 14px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
 }
 
 /* TABLE  */
 
 table {
-  margin-top: 100px;
+  margin-top: 50px;
   width: 100%;
   background-color: white;
   border-radius: 8px;

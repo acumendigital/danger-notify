@@ -192,7 +192,7 @@ export default {
 }
 .input-box-first {
   width: 15vw;
-  height: 9vh;
+  height: 50px;
   padding-left: 1.2vw;
   background: #ffffff;
   border: 1px solid #c4c4c4;
@@ -202,7 +202,7 @@ export default {
 }
 .input-box {
   width: 30.6vw;
-  height: 9vh;
+  height: 50px;
   padding-left: 1.2vw;
   background: #ffffff;
   border: 1px solid #c4c4c4;

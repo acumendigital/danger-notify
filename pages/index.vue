@@ -129,7 +129,7 @@ export default {
 
 <style scoped>
 .dashboard {
-  padding: 54px 64px;
+  padding: 70px 41px;
   width: 70vw;
 }
 

@@ -1,6 +1,5 @@
 <template>
   <div class="modal-backdrop">
-    <span class="close" @click="closeModal">X</span>
     <div class="modal">
       <h2>Customers Detail</h2>
       <div class="first-row">
@@ -129,6 +128,9 @@
         </div>
       </div>
     </div>
+    <div class="close" @click="$emit('close-closeModal')">
+      <img src="@/assets/images/close.svg" alt="close" />
+    </div>
   </div>
 </template>
 <script>
@@ -235,23 +237,26 @@ export default {
   background: rgba(24, 18, 46, 0.8);
   display: flex;
   justify-content: center;
-  align-items: center;
   font-family: 'Overpass', sans-serif;
   overflow-y: auto;
   z-index: 3;
-  padding: 50px 0;
+  padding: 100px 0;
 }
 
 .modal {
   background: #ffffff;
-  margin: auto;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   border-radius: 8px;
   width: 46vw;
   padding: 60px 0 8vh 101px;
-  height: 90vh;
+  height: 80vh;
+}
+
+.close {
+  margin-left: 16px;
+  cursor: pointer;
 }
 
 button {
@@ -447,17 +452,6 @@ button {
 }
 .spacer {
   height: 3vh;
-}
-.close {
-  position: absolute;
-  width: 26px;
-  height: 26px;
-  left: 75vw;
-  top: 8.5vh;
-  border-radius: 50%;
-  background: rgba(0, 166, 157, 0.25);
-  padding: 6px 3px 6px 8.5px;
-  cursor: pointer;
 }
 .active-tab,
 .pending-tab,

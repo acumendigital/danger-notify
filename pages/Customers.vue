@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <customerDetailModal v-if="showDetail" @close="showDetail = false" />
+  <div class="customers">
+    <customerDetailModal
+      v-if="showDetail"
+      @close-closeModal="showDetail = false"
+    />
     <div class="container">
       <h3 class="heading">Customers</h3>
       <div class="top-input-div">
@@ -56,31 +59,32 @@
           Refine Search
         </div>
       </div>
-      <div class="table-div">
-        <p class="table-top-text">All Customers (1028)</p>
-        <table>
-          <thead>
-            <tr class="table-heading">
-              <th v-for="(heading, index) in tableHead" :key="index">
-                {{ heading }}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="info in tableInfo"
-              :key="info.userID"
-              class="table-body-row"
-            >
-              <td>#{{ info.userID }}</td>
-              <td>{{ info.regDate }}</td>
-              <td>{{ info.fullName }}</td>
-              <td>{{ info.email }}</td>
-              <td :style="{ paddingLeft: '30px' }">{{ info.request }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table>
+        <div class="table-top">
+          <p class="table-top-text">All Customers (1028)</p>
+        </div>
+        <tr class="table-head">
+          <th class="user td-th">User ID</th>
+          <th class="reg-date td-th">Registration Date</th>
+          <th class="full-name td-th">Full Name</th>
+          <th class="email td-th">Email Address</th>
+          <th class="td-th">No of Request</th>
+        </tr>
+        <tr
+          v-for="el in tableElements"
+          :key="el.userId"
+          class="table-body"
+          @click="candidateDetails = true"
+        >
+          <td class="user td-th">{{ el.userId }}</td>
+          <td class="reg-date td-th">{{ el.regDate }}</td>
+          <td class="full-name td-th">{{ el.fullName }}</td>
+          <td class="email td-th">{{ el.email }}</td>
+          <td class="request td-th">
+            {{ el.request }}
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -98,48 +102,48 @@ export default {
         'Email Address',
         'No of Requests',
       ],
-      tableInfo: [
+      tableElements: [
         {
-          userID: 'ND1283',
+          userId: 'ND1283',
           regDate: '23.04.2020',
           fullName: 'Abdul Ifeoma',
           email: 'amaranth@outlook.com',
-          request: 10,
+          request: '1',
         },
         {
-          userID: 'ND1283',
+          userId: 'ND1283',
           regDate: '23.04.2020',
           fullName: 'Abdul Ifeoma',
           email: 'amaranth@outlook.com',
-          request: 1,
+          request: '2',
         },
         {
-          userID: 'ND1283',
+          userId: 'ND1283',
           regDate: '23.04.2020',
           fullName: 'Abdul Ifeoma',
           email: 'amaranth@outlook.com',
-          request: 34,
+          request: '34',
         },
         {
-          userID: 'ND1283',
+          userId: 'ND1283',
           regDate: '23.04.2020',
           fullName: 'Abdul Ifeoma',
           email: 'amaranth@outlook.com',
-          request: 3,
+          request: '20',
         },
         {
-          userID: 'ND1283',
+          userId: 'ND1283',
           regDate: '23.04.2020',
           fullName: 'Abdul Ifeoma',
           email: 'amaranth@outlook.com',
-          request: 2,
+          request: '34',
         },
         {
-          userID: 'ND1283',
+          userId: 'ND1283',
           regDate: '23.04.2020',
           fullName: 'Abdul Ifeoma',
           email: 'amaranth@outlook.com',
-          request: 37,
+          request: '10',
         },
       ],
       showDetail: false,
@@ -167,18 +171,30 @@ export default {
 </script>
 
 <style scoped>
+.customers {
+  padding: 85px 41px;
+  width: 70vw;
+}
+
 .container {
   display: flex;
+  padding-top: 0;
   flex-direction: column;
-  margin-left: 3vw;
 }
+
+.heading {
+  font-size: 24px;
+  font-weight: 500;
+  color: black;
+}
+
 #search-btn {
   background: #f9fafb;
   border: 1px solid #e1edfe;
   box-sizing: border-box;
   border-radius: 8px;
-  width: 25vw;
-  height: 7.55vh;
+  width: 20vw;
+  height: 50px;
   margin-right: 1vw;
   position: relative;
   padding-left: 3vw;
@@ -190,8 +206,8 @@ export default {
   border: 1px solid #d1d1d1;
   box-sizing: border-box;
   border-radius: 8px;
-  width: 12vw;
-  height: 7.55vh;
+  width: 10vw;
+  height: 50px;
   margin-right: 24px;
   padding-left: 0.7vw;
   padding-right: 0.38vw;
@@ -222,18 +238,16 @@ input[type='date']::-webkit-calendar-picker-indicator {
   top: 56.4%;
 }
 .top-input-div {
-  width: 74vw;
-  height: 176px;
   left: 286px;
   top: 259px;
   background: #ffffff;
   border-radius: 8px;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  padding: 3vw;
-  margin-top: 6.7vh;
+  padding: 25px 43px;
+  margin-top: 50px;
 }
 .search-box {
   position: relative;
@@ -241,10 +255,12 @@ input[type='date']::-webkit-calendar-picker-indicator {
 label {
   display: block;
   padding-bottom: 12px;
+  font-size: 15px;
+  color: black;
 }
 .green-btn {
-  width: 12vw;
-  height: 7.5vh;
+  width: 10vw;
+  height: 50px;
   max-height: 7.45vh;
   background: #00a69d;
   border-radius: 8px;
@@ -260,77 +276,57 @@ label {
   justify-content: center;
   align-items: center;
 }
-/* table styles start */
-.table-div {
-  background: #ffffff;
-  border-radius: 8px;
-  width: 74vw;
-  margin-top: 3vh;
-  padding: 5vh 0 15vh 0vw;
-  align-items: center;
-}
-.table-top-text {
-  font-family: Graphik;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 15px;
-  color: #344563;
-  padding: 5vh 0 4vh 3vw;
-}
-.table-heading {
-  background: #f5f8ff;
-  padding-left: 3vw;
-  background-size: cover;
-}
-.table-body-row {
-  font-family: Graphik;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 18px;
-  display: flex;
-  align-items: center;
-  padding-left: 3vw;
-  color: #6f8a9c;
-}
+
+/* TABLE  */
 
 table {
-  width: 74vw;
-  margin-top: 5px;
+  margin-top: 50px;
+  width: 100%;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.table-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px;
+}
+
+.table-top-text {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.table-head {
+  background-color: #f5f8ff;
+  padding: 0 40px;
 }
 
 tr {
   display: flex;
-  justify-content: space-between;
-  height: 10vh;
-  align-items: center;
-  padding: 10px 10px 10px 0;
-  width: 100%;
-  margin: 0;
-}
-
-td:last-child {
-  border-radius: 0 0 5px 5px;
-}
-
-.table-head {
-  background: rgba(0, 128, 255, 0.02);
-  border-radius: 8px 8px 0 0;
+  padding: 0 40px;
+  cursor: pointer;
 }
 
 th {
-  color: #75759e;
+  font-weight: 600;
 }
-thead {
-  padding: 0;
-}
-th,
-td {
+
+.td-th {
+  padding: 25px 0;
   width: 20%;
   display: flex;
-  justify-content: flex-start;
 }
+
+.user {
+  width: 15%;
+}
+
+.email {
+  width: 28%;
+}
+
 .heading {
   padding-bottom: 0vh;
 }

@@ -32,6 +32,7 @@ export default {}
   padding: 30px 45px;
   background-color: white;
   height: 90px;
+  z-index: 3;
 }
 
 .container-1,
