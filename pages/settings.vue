@@ -29,27 +29,28 @@
             <input v-model="number" type="text" class="input-box" />
           </div>
           <div class="input-field">
-            <label for="password" class="input-label">Password</label>
+            <label for="password1" class="input-label">New Password</label>
             <div class="password">
               <input
+                ref="password"
                 v-model="password"
                 type="password"
-                name="password"
+                name="password1"
                 class="input-box"
               />
-              <p class="showPassword">show</p>
+              <p class="showPassword" @click="showPassword">show</p>
             </div>
           </div>
           <div class="input-field">
-            <label for="password" class="input-label">Password</label>
+            <label for="password2" class="input-label">Confirm Password</label>
             <div class="password">
               <input
-                v-model="password"
+                ref="password1"
                 type="password"
-                name="password"
+                name="password2"
                 class="input-box"
               />
-              <p class="showPassword">show</p>
+              <p class="showPassword" @click="showPassword1">show</p>
             </div>
           </div>
           <h3 class="auth">Two Factor Authentication</h3>
@@ -70,7 +71,7 @@
                   @click="changeBtn1"
                 />
               </div>
-              <div class="btjn2">
+              <div class="btn2">
                 <img
                   :src="require(`~/assets/images/${Offimg}`)"
                   alt=""
@@ -97,16 +98,11 @@ export default {
       last_name: 'Makinde',
       email: 'SeyiMakinde@gmail.com',
       number: 93739220,
-      password: '**********',
+      password: '',
       Onimg: 'onBtn.svg',
       Offimg: 'offBtn.svg',
       count: 0,
     }
-  },
-  computed: {
-    counter() {
-      return this.count + 1
-    },
   },
   methods: {
     changeBtn1() {
@@ -125,6 +121,20 @@ export default {
         this.Offimg = 'offBtn.svg'
       }
     },
+    showPassword() {
+      if (this.$refs.password.type === 'password') {
+        this.$refs.password.type = 'text'
+      } else {
+        this.$refs.password.type = 'password'
+      }
+    },
+    showPassword1() {
+      if (this.$refs.password1.type === 'password') {
+        this.$refs.password1.type = 'text'
+      } else {
+        this.$refs.password1.type = 'password'
+      }
+    },
   },
 }
 </script>
@@ -134,7 +144,7 @@ export default {
   background: #ffffff;
   border-radius: 8px;
   width: 66vw;
-  margin-left: 54%;
+  margin-left: 60%;
   transform: translate(-50%, 0);
   align-items: center;
   /* text-align: center; */
@@ -181,16 +191,17 @@ export default {
   color: #6f8a9c;
 }
 .input-box-first {
-  width: 15.3vw;
+  width: 15vw;
   height: 9vh;
   padding-left: 1.2vw;
   background: #ffffff;
   border: 1px solid #c4c4c4;
   box-sizing: border-box;
   border-radius: 8px;
+  margin-right: 0.72vw;
 }
 .input-box {
-  width: 30vw;
+  width: 30.6vw;
   height: 9vh;
   padding-left: 1.2vw;
   background: #ffffff;
@@ -210,7 +221,8 @@ export default {
 .first_last {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  box-sizing: border-box;
 }
 .showPassword {
   position: absolute;
@@ -302,5 +314,13 @@ export default {
 }
 .form {
   margin-top: 3vh;
+}
+@media screen and (min-width: 1400px) {
+  .phone {
+    margin-bottom: 4.5vh;
+  }
+  .auth-text {
+    padding-top: 1.5vh;
+  }
 }
 </style>

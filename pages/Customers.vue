@@ -1,10 +1,10 @@
 <template>
   <div>
-    <customerDetailModal v-if="showDetail" />
+    <customerDetailModal v-if="showDetail" @close="showDetail = false" />
     <div class="container">
       <h3 class="heading">Customers</h3>
-      <div class="search">
-        <div class="form">
+      <div class="top-input-div">
+        <div class="form search-box">
           <label for="search-btn">What are you looking for ?</label>
           <input
             id="search-btn"
@@ -218,10 +218,10 @@ input[type='date']::-webkit-calendar-picker-indicator {
 }
 .search-icon {
   position: absolute;
-  left: 24.8vw;
+  left: 0.7vw;
   top: 56.4%;
 }
-.search {
+.top-input-div {
   width: 74vw;
   height: 176px;
   left: 286px;
@@ -235,27 +235,30 @@ input[type='date']::-webkit-calendar-picker-indicator {
   padding: 3vw;
   margin-top: 6.7vh;
 }
+.search-box {
+  position: relative;
+}
 label {
   display: block;
   padding-bottom: 12px;
 }
 .green-btn {
   width: 12vw;
-  height: 7.55vh;
+  height: 7.5vh;
+  max-height: 7.45vh;
   background: #00a69d;
   border-radius: 8px;
-  display: inline-block;
+  display: flex;
   margin-top: 3%;
-  padding-top: 2.5vh;
-  padding-bottom: auto;
   color: #ffffff;
   font-family: Graphik;
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
   line-height: 14px;
-  text-align: center;
   cursor: pointer;
+  justify-content: center;
+  align-items: center;
 }
 /* table styles start */
 .table-div {
@@ -330,5 +333,10 @@ td {
 }
 .heading {
   padding-bottom: 0vh;
+}
+@media screen and (min-width: 1400px) {
+  .green-btn {
+    margin-bottom: 1%;
+  }
 }
 </style>

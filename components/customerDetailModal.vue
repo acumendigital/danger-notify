@@ -32,21 +32,22 @@
         <div class="link-tabs">
           <nav class="tabs">
             <button
-              v-for="(tab, index) in tab_item"
-              :key="index"
               class="tabs__item"
-              :class="{
-                'tabs__item_active:focus': currentTab === index,
-                first_active: justLoaded,
-              }"
-              @click="currentTab = index"
+              :class="{ active_tabs__item: currentTab === 0 }"
+              @click="currentTab = 0"
             >
-              {{ tab }}
+              Active Requests
+            </button>
+            <button class="tabs__item" @click="currentTab = 1">
+              Pending Requests
+            </button>
+            <button class="tabs__item" @click="currentTab = 2">
+              Completed Requests
             </button>
           </nav>
         </div>
         <div class="content-container">
-          <div v-if="currentTab === 0" class="active">
+          <div v-show="currentTab === 0" class="active">
             <div v-for="head in heading2" :key="head" class="active-tab">
               <div class="left-value">
                 <p v-for="key in tableKey" :key="key" class="value">
@@ -154,7 +155,6 @@ export default {
         82,
         94,
       ],
-      tab_item: ['Active Requests', 'Pending Requests', 'Completed Requests'],
       heading2: [
         {
           candidate_name: 'Precious Makinde',
@@ -380,6 +380,21 @@ button {
   border-bottom: 1px solid #e4e4e4;
   cursor: pointer;
   transition: all 0.25s;
+}
+.active_tabs__item {
+  display: inline-block;
+  margin-right: 0.5vw;
+  padding: 7px;
+  padding-bottom: 8px;
+  font-size: 16px;
+  color: #00a69d;
+  border-bottom: 1px solid #00a69d !important;
+  z-index: 2;
+  text-decoration: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.25s;
+  border: none;
 }
 .tabs__active-line {
   position: absolute;
