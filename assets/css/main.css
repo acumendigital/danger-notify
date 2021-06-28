@@ -1,14 +1,8 @@
-@import url('http://fonts.cdnfonts.com/css/graphik');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-@font-face {
-    font-family: "Gelion";
-    src: url("../fonts/Gelion/Gelion-Regular.ttf"); /* IE9*/
-    src: url("../fonts/Gelion/Gelion-Regular.ttf") format("embedded-opentype"),
-    url("../fonts/Gelion/Gelion-Regular.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-}
 
 *{
-    font-family: 'Graphik', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 16px;
     line-height: 18px;
     padding: 0;
