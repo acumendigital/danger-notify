@@ -91,7 +91,7 @@ export default {}
   .hide-img {
     position: absolute;
     top: 50px;
-    right: 70px;
+    right: 50px;
   }
 
   .btn {

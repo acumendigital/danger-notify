@@ -18,6 +18,9 @@
           <input type="text" class="" />
           <img src="@/assets/images/hide.svg" alt="logo" class="hide-img" />
         </div>
+        <div class="forgot-password">
+          <h3>Forgot password?</h3>
+        </div>
         <div class="btn">
           <button class="save-btn">Log in</button>
         </div>
@@ -59,7 +62,19 @@ export default {}
     justify-content: center;
   }
   .text-con h3 {
+    font-size: 18px;
+    line-height: 21px;
+  }
+  .forgot-password {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+  }
+  .forgot-password h3 {
     color: #990c0c;
+    font-size: 14px;
+    line-height: 17px;
+    /* padding-right: 30px; */
   }
 
   .form {
@@ -91,7 +106,7 @@ export default {}
   .hide-img {
     position: absolute;
     top: 50px;
-    right: 70px;
+    right: 50px;
   }
 
   .btn {
@@ -119,7 +134,8 @@ export default {}
     margin: 10px auto;
   }
   .new-user p {
-    padding-left: 20px;
+    /* padding-left: 20px; */
+    text-align: center;
   }
   span a {
     color: #990c0c;

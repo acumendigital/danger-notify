@@ -93,7 +93,7 @@ export default {}
   .hide-img {
     position: absolute;
     top: 50px;
-    right: 70px;
+    right: 50px;
   }
 
   .btn {
@@ -122,6 +122,7 @@ export default {}
   }
   .old-user p {
     padding-left: 20px;
+    text-align: center;
   }
   span a {
     color: #990c0c;
