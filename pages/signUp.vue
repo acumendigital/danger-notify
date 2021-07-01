@@ -1,12 +1,12 @@
 <template>
-  <div class="containerSuccess">
+  <div class="container">
     <div class="logo-con">
       <img src="@/assets/images/logo.svg" alt="logo" />
     </div>
     <div class="content">
       <form class="form">
         <div class="input-div">
-          <label class="new-input"> First Nmae</label> <br />
+          <label class="new-input"> First Name</label> <br />
           <input type="text" class="" />
         </div>
         <div class="input-div">
@@ -33,7 +33,10 @@
       </form>
       <div class="old-user">
         <p>
-          Already have an account? <span><a href="#">Log In</a></span>
+          Already have an account?
+          <span>
+            <nuxt-link to="/login" class="link">Log In</nuxt-link>
+          </span>
         </p>
       </div>
     </div>
@@ -46,11 +49,11 @@ export default {}
 
 <style>
 @media screen and (max-width: 767px) {
-  .containerSuccess {
+  .container {
     width: 100%;
     margin: 20px auto;
   }
-  .containerSuccess .logo-con {
+  .container .logo-con {
     margin: 78px auto;
   }
   .logo-con img {
@@ -59,7 +62,7 @@ export default {}
     margin-right: auto;
     width: 50%;
   }
-  .containerSuccess .text-con {
+  .container .text-con {
     margin-top: 73.75px;
     margin-bottom: 33px;
   }
@@ -124,8 +127,13 @@ export default {}
     padding-left: 20px;
     text-align: center;
   }
-  span a {
+  span .link {
     color: #990c0c;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    display: none;
   }
 }
 </style>

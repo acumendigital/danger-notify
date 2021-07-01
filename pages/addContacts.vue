@@ -17,66 +17,71 @@
 </template>
 
 <script>
-// import buttons from '../components/buttons.vue'
-export default {
-  name: 'AddContacts',
-}
+export default {}
 </script>
 
 <style>
-/* @media (min-width: 768px;){
-
-} */
-.container {
-  /* background: green; */
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+@media screen and (max-width: 767px) {
+  .container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .container .logo-con {
+    margin-top: 78px;
+  }
+  .container .text-con {
+    margin-top: 53.75px;
+    font-size: 24px;
+    line-height: 28px;
+  }
+  .text-con h3 {
+    text-align: center;
+  }
+  .text-con p {
+    padding-top: 15px;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+  }
+  .container .add {
+    margin-top: 60px;
+  }
+  .add h5 {
+    font-size: 14px;
+    line-height: 17px;
+    color: #990c0c;
+  }
+  .add-contact {
+    font-size: 14px;
+    line-height: 17px;
+    color: #990c0c;
+    padding-left: 15px;
+  }
+  .btn {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 75px auto;
+  }
+  .btn .save-btn {
+    width: 359px;
+    background: #939393;
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 19px;
+    padding: 17px 159px;
+    color: #ffffff;
+  }
 }
-.container .logo-con {
-  margin-top: 78px;
-}
-.container .text-con {
-  margin-top: 53.75px;
-  font-size: 24px;
-  line-height: 28px;
-}
-.text-con h3 {
-  text-align: center;
-}
-.text-con p {
-  padding-top: 15px;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 17px;
-  text-align: center;
-}
-.container .add {
-  margin-top: 60px;
-}
-.add h5,
-.add-contact {
-  font-size: 14px;
-  line-height: 17px;
-  color: #990c0c;
-}
-.btn {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  margin: 75px auto;
-}
-.btn .save-btn {
-  width: 359px;
-  background: #939393;
-  border-radius: 10px;
-  font-size: 16px;
-  line-height: 19px;
-  padding: 17px 159px;
-  color: #ffffff;
+@media screen and (min-width: 768px) {
+  .container {
+    display: none;
+  }
 }
 </style>

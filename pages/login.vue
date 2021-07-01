@@ -1,5 +1,5 @@
 <template>
-  <div class="containerSuccess">
+  <div class="container">
     <div class="logo-con">
       <img src="@/assets/images/logo.svg" alt="logo" />
     </div>
@@ -19,7 +19,11 @@
           <img src="@/assets/images/hide.svg" alt="logo" class="hide-img" />
         </div>
         <div class="forgot-password">
-          <h3>Forgot password?</h3>
+          <h3>
+            <nuxt-link to="/forgotPassword" class="link"
+              >Forgot password?</nuxt-link
+            >
+          </h3>
         </div>
         <div class="btn">
           <button class="save-btn">Log in</button>
@@ -27,7 +31,8 @@
       </form>
       <div class="new-user">
         <p>
-          Don't have an account? <span><a href="#">Sign up</a></span>
+          Don't have an account?
+          <span><nuxt-link to="/signUp" class="link">Sign up</nuxt-link> </span>
         </p>
       </div>
     </div>
@@ -40,11 +45,11 @@ export default {}
 
 <style>
 @media screen and (max-width: 767px) {
-  .containerSuccess {
+  .container {
     width: 100%;
     margin: 20px auto;
   }
-  .containerSuccess .logo-con {
+  .container .logo-con {
     margin: 78px auto;
   }
   .logo-con img {
@@ -53,7 +58,7 @@ export default {}
     margin-right: auto;
     width: 50%;
   }
-  .containerSuccess .text-con {
+  .container .text-con {
     margin-top: 73.75px;
     margin-bottom: 33px;
   }
@@ -70,11 +75,10 @@ export default {}
     justify-content: flex-end;
     margin-right: 20px;
   }
-  .forgot-password h3 {
+  .forgot-password a {
     color: #990c0c;
     font-size: 14px;
     line-height: 17px;
-    /* padding-right: 30px; */
   }
 
   .form {
@@ -134,11 +138,15 @@ export default {}
     margin: 10px auto;
   }
   .new-user p {
-    /* padding-left: 20px; */
     text-align: center;
   }
-  span a {
+  span .link {
     color: #990c0c;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    display: none;
   }
 }
 </style>

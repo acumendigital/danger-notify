@@ -1,5 +1,5 @@
 <template>
-  <div class="containerSuccess">
+  <div class="container">
     <div class="logo-con">
       <img src="@/assets/images/logo.svg" alt="logo" />
     </div>
@@ -31,11 +31,11 @@ export default {}
 
 <style>
 @media screen and (max-width: 767px) {
-  .containerSuccess {
+  .container {
     width: 100%;
     margin: 20px auto;
   }
-  .containerSuccess .logo-con {
+  .container .logo-con {
     margin: 78px auto;
   }
   .logo-con img {
@@ -44,7 +44,7 @@ export default {}
     margin-right: auto;
     width: 50%;
   }
-  .containerSuccess .text-con {
+  .container .text-con {
     margin-top: 73.75px;
     margin-bottom: 33px;
   }
@@ -117,6 +117,11 @@ export default {}
   .content {
     width: 90%;
     margin: 10px auto;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    display: none;
   }
 }
 </style>
