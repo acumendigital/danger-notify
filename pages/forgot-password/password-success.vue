@@ -22,7 +22,7 @@
 export default {}
 </script>
 
-<style>
+<style scoped>
 @media screen and (max-width: 767px) {
   .container {
     width: 100%;
@@ -32,11 +32,25 @@ export default {}
     justify-content: center;
   }
   .container .logo-con {
+    display: flex;
+    justify-content: center;
     margin-top: 78px;
   }
-  .container .success-con {
-    margin-top: 72.75px;
+
+  .logo-con img {
+    width: 75%;
   }
+
+  .container .success-logo {
+    margin-top: 72.75px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .success-logo img {
+    width: 90%;
+  }
+
   .container .text-con {
     margin-top: 42.8px;
     margin-bottom: 50px;
