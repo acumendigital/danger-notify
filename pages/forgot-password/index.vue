@@ -14,11 +14,14 @@
       <form class="form">
         <div class="input-div">
           <label class="new-input"> Email Address</label> <br />
-          <input type="text" class="" />
+          <input v-model="email" type="text" />
         </div>
 
         <div class="btn">
-          <button class="save-btn">Send</button>
+          <button class="save-btn" @click="sendPasslink()">
+            <Loader v-show="loading" />
+            <span v-show="!loading">Send</span>
+          </button>
         </div>
       </form>
     </div>
@@ -26,10 +29,49 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      email: '',
+      loading: false,
+    }
+  },
+  methods: {
+    sendPasslink() {
+      this.loading = true
+      this.errMsg = ''
+      fetch(this.$store.state.baseurl + '/user/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstname: this.firstname,
+          lastname: this.lastname,
+          email: this.email,
+          phone: this.phone,
+          password: this.password,
+        }),
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+          this.loading = false
+
+          if (!data.error) {
+            this.$store.commit('setToken', data.data.token)
+            this.$store.commit('setAdminDetails', data.data.profile)
+            this.$router.push('/')
+          } else {
+            this.errMsg = data.msg
+          }
+        })
+        .catch((err) => this.$toasted.error(err, { duration: 3600 }))
+    },
+  },
+}
 </script>
 
-<style>
+<style scoped>
 @media screen and (max-width: 767px) {
   .container {
     width: 100%;
@@ -103,17 +145,22 @@ export default {}
     width: 300px;
     background: #990c0c;
     border-radius: 10px;
-    font-size: 16px;
+    /* font-size: 16px; */
     line-height: 19px;
     padding: 17px 159px;
     color: #ffffff;
-    cursor: pointer;
+    /* cursor: pointer; */
     width: 300px;
     margin-top: 20px;
     margin-left: 20px;
     padding: 15px;
     margin-bottom: 20px;
   }
+
+  .save-btn span {
+    color: white;
+  }
+
   .content {
     width: 90%;
     margin: 10px auto;

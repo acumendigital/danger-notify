@@ -1,101 +1,182 @@
 <template>
-  <div class="container">
-    <div class="love">
-      <img src="@/assets/feelings.svg" alt="" />
-      <h1>Save Lives</h1>
-      <p>
-        With Danger Notify you are in the position to save lives during
-        emergency situation
-      </p>
-    </div>
-    <div class="location">
-      <img src="@/assets/gps- 1.svg" alt="" />
-      <h1>Save Lives</h1>
-      <p>
-        With Danger Notify you are in the position to save lives during
-        emergency situation
-      </p>
-    </div>
-    <div class="caution">
-      <img src="@/assets/warning- 1.svg" alt="" />
-      <h1>Save Lives</h1>
-      <p>
-        With Danger Notify you are in the position to save lives during
-        emergency situation
-      </p>
-    </div>
-    <div class="ambulance">
-      <img class="van" src="@/assets/ambulance 1.svg" alt="" />
-      <img class="asterik" src="@/assets/ambulance-sign 1.svg" alt="" />
-      <h1>Save Lives</h1>
-      <p>
-        With Danger Notify you are in the position to save lives during
-        emergency situation
-      </p>
-      <button>Get Started</button>
-    </div>
-  </div>
+  <swiper ref="mySwiper" :options="swiperOptions">
+    <swiper-slide>
+      <div class="bg-area">
+        <p class="skip">Skip >></p>
+        <img src="@/assets/feelings.svg" alt="" />
+        <h1>Save Lives</h1>
+        <p class="text">
+          With Danger Notify you are in the position to save lives during
+          emergency situation
+        </p>
+        <div class="circles">
+          <div class="circle unfill"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <div class="bg-area">
+        <p class="skip">Skip >></p>
+        <img src="@/assets/gps- 1.svg" alt="" />
+        <h1>Save Lives</h1>
+        <p class="text">
+          With Danger Notify you are in the position to save lives during
+          emergency situation
+        </p>
+        <div class="circles">
+          <div class="circle"></div>
+          <div class="circle unfill"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <div class="bg-area">
+        <p class="skip">Skip >></p>
+        <img src="@/assets/warning- 1.svg" alt="" />
+        <h1>Save Lives</h1>
+        <p class="text">
+          With Danger Notify you are in the position to save lives during
+          emergency situation
+        </p>
+        <div class="circles">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle unfill"></div>
+          <div class="circle"></div>
+        </div>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <div class="bg-area">
+        <p class="skip">Skip >></p>
+        <img class="ambulance" src="@/assets/images/Group 49.svg" alt="" />
+        <h1>Save Lives</h1>
+        <p class="text">
+          With Danger Notify you are in the position to save lives during
+          emergency situation
+        </p>
+        <NuxtLink to="/welcome">
+          <div class="btn-cont">
+            <button type="submit" class="btn">Get Started</button>
+          </div>
+        </NuxtLink>
+        <div class="circles">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle unfill"></div>
+        </div>
+      </div>
+    </swiper-slide>
+    <div slot="pagination" class="swiper-pagination"></div>
+  </swiper>
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'Carrousel',
+  data() {
+    return {
+      swiperOptions: {
+        pagination: {
+          el: '.swiper-pagination',
+        },
+        // Some Swiper option/callback...
+      },
+    }
+  },
+  computed: {
+    swiper() {
+      return this.$refs.mySwiper.$swiper
+    },
+  },
+  mounted() {
+    console.log('Current Swiper instance object', this.swiper)
+    this.swiper.slideTo(0, 1000, false)
+  },
+}
 </script>
 
 <style scoped>
 @media screen and (max-width: 767px) {
-  div.love,
-  div.location,
-  div.caution,
-  div.ambulance {
+  .bg-area {
+    height: 100vh;
+    width: 100%;
+    padding: 40px 30px;
+  }
+
+  .skip {
+    text-align: right;
+    /* color: #fff; */
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 10%;
+  }
+
+  .ambulance {
+    width: 90%;
+    margin-top: 10%;
+  }
+
+  .bg-area img {
+    width: 70%;
+    margin: auto;
+    margin-top: 30%;
+    margin-bottom: 5%;
+    display: flex;
+    justify-content: center;
     text-align: center;
   }
-  div h1 {
-    font: Rubik;
-    font-weight: 700px;
-    font-style: normal;
-    font-size: 36px;
-    line-height: 20px;
-    color: black;
-    margin-bottom: 25px;
+
+  .bg-area h1 {
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
   }
-  div p {
-    font: Rubik;
-    font-weight: 400px;
-    font-style: normal;
+
+  .bg-area .text {
     font-size: 14px;
-    line-height: 20px;
-  }
-  div.location {
-    margin: 25px auto;
-  }
-  div.location img {
-    display: block;
+    text-align: center;
     margin: auto;
-    width: 50%;
+    width: 90%;
   }
-  div.container {
+
+  .circles {
+    margin-top: 10%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
   }
-  .asterik {
-    position: relative;
-    bottom: 250px;
-    left: 100px;
+
+  .circles .circle {
+    width: 10px;
+    height: 10px;
+    background: rgb(0, 0, 0);
+    border-radius: 50%;
+    margin: 3px;
+    border: 2px solid rgb(0, 0, 0);
   }
-  .van {
-    position: relative;
-    top: 100px;
+
+  .circles .unfill {
+    background: transparent;
   }
-  button {
-    position: absolute;
-    width: 212px;
-    height: 52px;
-    left: 90px;
+
+  .btn-cont {
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 16px 60px;
     background: #990c0c;
     border-radius: 10px;
     color: white;
+    text-align: center;
     margin-top: 20px;
   }
 }

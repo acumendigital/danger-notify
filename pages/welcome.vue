@@ -46,7 +46,7 @@
 export default {}
 </script>
 
-<style>
+<style scoped>
 @media screen and (max-width: 767px) {
   .container {
     width: 100%;
@@ -78,7 +78,7 @@ export default {}
     padding: 17px 77px;
     cursor: pointer;
     width: 212px;
-    margin: 20px auto 0px auto;
+    margin: 70px auto 25px auto;
     justify-content: center;
     align-self: center;
     padding: 15px;

@@ -10,29 +10,32 @@
       <form class="form">
         <div class="input-div">
           <label class="new-input"> Email Address</label> <br />
-          <input type="text" class="" />
+          <input v-model="email" type="text" class="" />
         </div>
 
         <div class="input-div">
           <label class="confirm"> Password</label> <br />
-          <input type="text" class="" />
-          <img src="@/assets/images/hide.svg" alt="logo" class="hide-img" />
+          <input id="password" v-model="password" :type="type" />
+          <p class="hide-img" @click="showPassword()">{{ showHidepass }}</p>
         </div>
         <div class="forgot-password">
           <h3>
-            <nuxt-link to="/forgotPassword" class="link"
+            <nuxt-link to="/forgot-password" class="link"
               >Forgot password?</nuxt-link
             >
           </h3>
         </div>
         <div class="btn">
-          <button class="save-btn">Log in</button>
+          <button class="save-btn" @click="login()">
+            <Loader v-show="loading" />
+            <span v-show="!loading">Log in</span>
+          </button>
         </div>
       </form>
       <div class="new-user">
         <p>
           Don't have an account?
-          <span><nuxt-link to="/signUp" class="link">Sign up</nuxt-link> </span>
+          <span><nuxt-link to="/signup" class="link">Sign up</nuxt-link> </span>
         </p>
       </div>
     </div>
@@ -40,10 +43,58 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      type: 'password',
+      email: '',
+      password: '',
+      showHidepass: 'Show',
+      loading: false,
+    }
+  },
+  methods: {
+    showPassword() {
+      if (this.type === 'password') {
+        this.type = 'text'
+        this.showHidepass = 'Hide'
+      } else if (this.type === 'text') {
+        this.type = 'password'
+        this.showHidepass = 'Show'
+      }
+    },
+    login() {
+      this.loading = true
+      this.errMsg = ''
+      fetch(this.$store.state.baseurl + '/user/auth/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: this.email,
+          password: this.password,
+        }),
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+          this.loading = false
+
+          if (!data.error) {
+            this.$store.commit('setToken', data.data.token)
+            this.$store.commit('setAdminDetails', data.data.profile)
+            this.$router.push('/')
+          } else {
+            this.errMsg = data.msg
+          }
+        })
+        .catch((err) => this.$toasted.error(err, { duration: 3600 }))
+    },
+  },
+}
 </script>
 
-<style>
+<style scoped>
 @media screen and (max-width: 767px) {
   .container {
     width: 100%;
@@ -109,8 +160,11 @@ export default {}
   }
   .hide-img {
     position: absolute;
-    top: 50px;
-    right: 50px;
+    cursor: pointer;
+    top: 60px;
+    right: 40px;
+    color: rgba(0, 0, 0, 0.726);
+    font-size: 14px;
   }
 
   .btn {
@@ -132,6 +186,10 @@ export default {}
     margin-left: 20px;
     padding: 15px;
     margin-bottom: 20px;
+  }
+
+  .save-btn span {
+    color: white;
   }
   .content {
     width: 90%;
