@@ -21,4 +21,9 @@ html {
   box-sizing: border-box;
   margin: 0;
 }
+@media only screen and (min-width: 767px) {
+  html {
+    display: none;
+  }
+}
 </style>
