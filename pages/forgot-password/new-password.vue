@@ -36,6 +36,7 @@ export default {
     return {
       newPassword: '',
       confirmPassword: '',
+      loading: false,
     }
   },
   methods: {
