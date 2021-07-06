@@ -26,7 +26,7 @@
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input v-model="phone" type="password" />
+          <input v-model="password" type="password" />
         </div>
       </form>
     </div>
@@ -34,7 +34,7 @@
       <h4 class="change">Change Password</h4>
     </div>
     <div class="btn" role="button" @click="$router.push('/profileSaved')">
-      <h4 class="saving">Save</h4>
+      <h4 class="saving" @click="saveProfile()">Save</h4>
     </div>
   </div>
 </template>
@@ -44,8 +44,37 @@ export default {
     return {
       phone: '+2348108551935',
       email: 'emayeodavid@gmail.com',
-      password: '******************',
+      password: 'Emodot12345',
     }
+  },
+  methods: {
+    saveProfile() {
+      this.loading = true
+      this.errMsg = ''
+      fetch(this.$store.state.baseurl + '/user/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          newPassword: this.password,
+          confirmPassword: this.password,
+        }),
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+          this.loading = false
+
+          if (!data.error) {
+            this.$store.commit('setToken', data.data.token)
+            this.$store.commit('setAdminDetails', data.data.profile)
+            this.$router.push('/')
+          } else {
+            this.errMsg = data.msg
+          }
+        })
+        .catch((err) => this.$toasted.error(err, { duration: 3600 }))
+    },
   },
 }
 </script>

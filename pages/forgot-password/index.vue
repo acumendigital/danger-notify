@@ -46,11 +46,7 @@ export default {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          firstname: this.firstname,
-          lastname: this.lastname,
           email: this.email,
-          phone: this.phone,
-          password: this.password,
         }),
       })
         .then((resp) => resp.json())
