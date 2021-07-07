@@ -7,7 +7,7 @@
       <h3>Add Emergency Contact</h3>
       <p>Add two Emergency Contacts before you continue</p>
     </div>
-    <div class="add">
+    <div class="add" @click="$router.push('/newContact')">
       <h5>+ <span class="add-contact">Add Contact</span></h5>
     </div>
     <div class="btn">
