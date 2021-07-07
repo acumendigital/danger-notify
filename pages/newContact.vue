@@ -57,10 +57,11 @@ export default {
     saveContact() {
       this.loading = true
       this.errMsg = ''
-      fetch(this.$store.state.baseurl + '/user/contact/add_contact', {
+      fetch(this.$store.state.baseUrl + '/user/contact/add_contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
         body: JSON.stringify({
           name: this.name,
@@ -72,7 +73,7 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           this.loading = false
-          console.log(data.data)
+          console.log(data)
           if (!data.error) {
             this.$store.commit('setToken', data.data.token)
             this.$store.commit('setAdminDetails', data.data.profile)
