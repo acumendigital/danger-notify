@@ -11,13 +11,27 @@
       <h5>+ <span class="add-contact">Add Contact</span></h5>
     </div>
     <div class="btn">
-      <button class="save-btn">Save</button>
+      <button class="save-btn" @click="saveContact()">
+        <Loader v-show="loading" />
+        <span v-show="!loading">Save</span>
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      loading: false,
+      errMsg: '',
+      name: '',
+      relationship: '',
+      email: '',
+      phone: '',
+    }
+  },
+}
 </script>
 
 <style scoped>

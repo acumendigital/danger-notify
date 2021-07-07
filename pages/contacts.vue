@@ -59,6 +59,12 @@ export default {
         phone: '+2348108551935',
       },
     ],
+    loading: false,
+    errMsg: '',
+    name: '',
+    relationship: '',
+    email: '',
+    phone: '',
   }),
 }
 </script>

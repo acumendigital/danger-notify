@@ -34,8 +34,11 @@
         </div>
       </form>
     </div>
-    <div class="btn" role="button" @click="$router.push('/contactSaved')">
-      <h4 class="saving">Save</h4>
+    <div class="btn" role="button">
+      <button class="save-btn" @click="saveContact()">
+        <Loader v-show="loading" />
+        <span v-show="!loading">Save</span>
+      </button>
     </div>
   </div>
 </template>
@@ -43,11 +46,43 @@
 export default {
   data() {
     return {
+      loading: false,
       name: '',
       relationship: '',
       phone: '',
       email: '',
     }
+  },
+  methods: {
+    saveContact() {
+      this.loading = true
+      this.errMsg = ''
+      fetch(this.$store.state.baseurl + '/user/contact/add_contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: this.name,
+          relationship: this.relationship,
+          email: this.email,
+          phone: this.phone,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          this.loading = false
+          console.log(data.data)
+          if (!data.error) {
+            this.$store.commit('setToken', data.data.token)
+            this.$store.commit('setAdminDetails', data.data.profile)
+            this.$router.push('/contactSaved')
+          } else {
+            this.errMsg = data.msg
+          }
+        })
+        .catch((err) => this.$toasted.error(err, { duration: 3600 }))
+    },
   },
 }
 </script>
@@ -111,13 +146,33 @@ export default {
   padding-left: 15px;
   color: rgba(0, 0, 0, 0.5);
 }
-.btn {
+/* .btn {
   width: 350px;
   height: 54px;
   margin: 0 auto;
   background: #990c0c;
   border-radius: 10px;
   margin-top: 60px;
+} */
+
+.btn {
+  width: 350px;
+  margin: 0 auto;
+}
+.btn .save-btn {
+  width: 300px;
+  background: #990c0c;
+  border-radius: 10px;
+  font-size: 16px;
+  line-height: 19px;
+  padding: 17px 159px;
+  color: #ffffff;
+  cursor: pointer;
+  width: 300px;
+  margin-top: 20px;
+  margin-left: 20px;
+  padding: 15px;
+  margin-bottom: 20px;
 }
 .saving {
   color: #fff;

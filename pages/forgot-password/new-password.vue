@@ -49,8 +49,8 @@ export default {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          newPassword: this.password,
-          confirmPassword: this.password,
+          newPassword: this.newPassword,
+          confirmPassword: this.confirmPassword,
         }),
       })
         .then((resp) => resp.json())
