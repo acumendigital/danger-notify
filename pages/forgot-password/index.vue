@@ -54,7 +54,7 @@ export default {
           this.loading = false
 
           if (!data.error) {
-            this.$store.commit('setToken', data.data.token)
+            // this.$store.commit('setToken', data.data.token)
             this.$store.commit('setAdminDetails', data.data.profile)
             this.$router.push('/')
           } else {

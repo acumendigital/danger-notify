@@ -32,8 +32,11 @@
           <input v-model="email" type="email" />
         </div>
       </form>
-      <div class="btn" role="button" @click="$router.push('/contactSaved')">
-        <h4 class="save">Save</h4>
+      <div class="btn">
+        <button class="save-btn" @click="editContact()">
+          <Loader v-show="loading" />
+          <span v-show="!loading">Save</span>
+        </button>
       </div>
       <div class="button" role="button">
         <h4 class="delete">Delete Contact</h4>
@@ -46,11 +49,46 @@
 export default {
   data() {
     return {
-      name: 'Victor',
-      relationship: 'Brother',
-      phone: '+2348108551935',
-      email: 'emayeodavid@gmail.com',
+      name: '',
+      relationship: '',
+      phone: '',
+      email: '',
+      errMsg: '',
+      loading: false,
     }
+  },
+  methods: {
+    editContact() {
+      this.loading = true
+      fetch(
+        this.$store.state.baseUrl +
+          '/user/contact/update_contact/60deb2d68b78b22aa0bdfc00',
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: this.name,
+            relationship: this.relationship,
+            email: this.email,
+            phone: this.phone,
+          }),
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          this.loading = false
+          if (!data.error) {
+            this.$store.commit('updateContact', data.data.profile)
+          } else {
+            this.$toasted.error(data.message, {
+              duration: 3600,
+              position: 'bottom-center',
+            })
+          }
+        })
+    },
   },
 }
 </script>
@@ -118,13 +156,33 @@ export default {
     padding-left: 15px;
     color: rgba(0, 0, 0, 0.5);
   }
-  .btn {
+  /* .btn {
     width: 350px;
     height: 54px;
     margin: 0 auto;
     background: #990c0c;
     border-radius: 10px;
     margin-top: 20px;
+  } */
+
+  .btn {
+    width: 350px;
+    margin: 0 auto;
+  }
+  .btn .save-btn {
+    width: 300px;
+    background: #990c0c;
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 19px;
+    padding: 17px 159px;
+    color: #ffffff;
+    cursor: pointer;
+    width: 300px;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 15px;
+    margin-bottom: 20px;
   }
   .save {
     color: #fff;

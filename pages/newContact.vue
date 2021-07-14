@@ -34,7 +34,7 @@
         </div>
       </form>
     </div>
-    <div class="btn" role="button">
+    <div class="btn">
       <button class="save-btn" @click="saveContact()">
         <Loader v-show="loading" />
         <span v-show="!loading">Save</span>
@@ -43,6 +43,8 @@
   </div>
 </template>
 <script>
+import Cookies from 'js-cookie'
+
 export default {
   data() {
     return {
@@ -75,11 +77,13 @@ export default {
           this.loading = false
           console.log(data)
           if (!data.error) {
-            this.$store.commit('setToken', data.data.token)
-            this.$store.commit('setAdminDetails', data.data.profile)
+            Cookies.set('name', `${data.data.name}`)
+            Cookies.set('relationship', `${data.data.relationship}`)
+            Cookies.set('email', `${data.data.email}`)
+            Cookies.set('phone', `${data.data.phone}`)
             this.$router.push('/contactSaved')
           } else {
-            this.errMsg = data.msg
+            this.$toasted.error(data.message, { duration: 3600 })
           }
         })
         .catch((err) => this.$toasted.error(err, { duration: 3600 }))

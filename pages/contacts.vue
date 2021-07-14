@@ -18,7 +18,7 @@
       <Contact
         v-for="(contact, index) in contacts"
         :key="index"
-        :contact="contact"
+        :contact="contacts"
       />
     </div>
     <div class="link">
@@ -30,6 +30,7 @@
   </div>
 </template>
 <script>
+import Cookies from 'js-cookie'
 import Contact from '@/components/Contact.vue'
 export default {
   components: {
@@ -38,26 +39,26 @@ export default {
   layout: 'bottomMenu',
   data: () => ({
     contacts: [
-      {
-        image: 'download_1.png',
-        name: 'Dad',
-        phone: '+2348108551935',
-      },
-      {
-        image: 'download_1.png',
-        name: 'Mum',
-        phone: '+2348108551935',
-      },
-      {
-        image: 'download_1.png',
-        name: 'Victor',
-        phone: '+2348108551935',
-      },
-      {
-        image: 'download_1.png',
-        name: 'Katherine',
-        phone: '+2348108551935',
-      },
+      // {
+      //   image: 'download_1.png',
+      //   name: 'Dad',
+      //   phone: '+2348108551935',
+      // },
+      // {
+      //   image: 'download_1.png',
+      //   name: 'Mum',
+      //   phone: '+2348108551935',
+      // },
+      // {
+      //   image: 'download_1.png',
+      //   name: 'Victor',
+      //   phone: '+2348108551935',
+      // },
+      // {
+      //   image: 'download_1.png',
+      //   name: 'Katherine',
+      //   phone: '+2348108551935',
+      // },
     ],
     loading: false,
     errMsg: '',
@@ -66,6 +67,34 @@ export default {
     email: '',
     phone: '',
   }),
+  created() {
+    this.getContacts()
+    console.log(Cookies.get('token'))
+  },
+  methods: {
+    async getContacts() {
+      this.loading = true
+      this.errMsg = ''
+      const fetchContacts = await fetch(
+        this.$store.state.baseUrl + '/user/contact/all_contacts',
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get('token')}`,
+          },
+        }
+      )
+      const getContactsJson = fetchContacts.json()
+      getContactsJson.then((response) => {
+        if (!response.error) {
+          Cookies.set('token', `${response.token}`)
+          console.log(response)
+          this.contacts = response.data
+        } else {
+          this.$toasted.error(response.message, { duration: 3600 })
+        }
+      })
+    },
+  },
 }
 </script>
 <style scoped>

@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
+
 export default {
   data() {
     return {
@@ -81,8 +83,11 @@ export default {
           this.loading = false
 
           if (!data.error) {
-            this.$store.commit('setToken', data.data.token)
-            this.$store.commit('setAdminDetails', data.data.profile)
+            console.log(data.data)
+            Cookies.set('email', `${data.data.email}`)
+            Cookies.set('password', `${data.data.password}`)
+            // this.$store.commit('setToken', data.data.token)
+            // this.$store.commit('setAdminDetails', data.data.profile)
             this.$router.push('/')
           } else {
             this.errMsg = data.msg

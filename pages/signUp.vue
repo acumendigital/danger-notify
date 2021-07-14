@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
+
 export default {
   data() {
     return {
@@ -60,6 +62,9 @@ export default {
       type: 'password',
     }
   },
+  created() {
+    console.log(Cookies.get('token'))
+  },
   methods: {
     showPassword() {
       if (this.type === 'password') {
@@ -70,32 +75,43 @@ export default {
         this.showHidepass = 'Show'
       }
     },
-    signup() {
+    async signup() {
       this.loading = true
       this.errMsg = ''
-      fetch(this.$store.state.baseurl + '/user/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          firstname: this.firstname,
-          lastname: this.lastname,
-          email: this.email,
-          phone: this.phone,
-          password: this.password,
-        }),
-      })
-        .then((resp) => resp.json())
-        .then((data) => {
+      const signupPromise = await fetch(
+        this.$store.state.baseurl + '/user/signup',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            firstname: this.firstname,
+            lastname: this.lastname,
+            email: this.email,
+            phone: this.phone,
+            password: this.password,
+          }),
+        }
+      )
+      const signupJson = signupPromise.json()
+      signupJson
+        .then((response) => {
           this.loading = false
 
-          if (!data.error) {
-            this.$store.commit('setToken', data.data.token)
-            this.$store.commit('setAdminDetails', data.data.profile)
-            this.$router.push('/')
+          if (!response.error) {
+            console.log(response)
+            Cookies.set('firstname', `${response.data.firstname}`)
+            Cookies.set('lastname', `${response.data.lastname}`)
+            Cookies.set('email', `${response.data.email}`)
+            Cookies.set('phone', `${response.data.phone}`)
+            Cookies.set('password', `${response.data.password}`)
+            Cookies.set('token', `${response.token}`)
+            // this.$store.commit('setToken', data.data.token)
+            // this.$store.commit('setAdminDetails', data.data.profile)
+            this.$router.push('/index')
           } else {
-            this.errMsg = data.msg
+            this.$toasted.error(response.message, { duration: 3600 })
           }
         })
         .catch((err) => this.$toasted.error(err, { duration: 3600 }))
