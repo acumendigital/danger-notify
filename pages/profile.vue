@@ -4,15 +4,15 @@
       <button class="saved">
         <img
           class="left-arrow"
-          src="~assets/image/vector.png"
+          src="~assets/image/Vector.png"
           @click="$router.go(-1)"
         />
         Profile
-        <img class="setting" src="~assets/image/gear.png" />
+        <img class="setting" src="~assets/image/Gear.png" />
       </button>
     </div>
     <div class="image">
-      <img class="user" src="~assets/image/group 41.png" />
+      <img class="user" src="~assets/image/Group 41.png" />
     </div>
     <div class="container">
       <form class="form">

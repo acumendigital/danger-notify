@@ -4,7 +4,7 @@
       <button class="edit">
         <img
           class="left-arrow"
-          src="~assets/image/vector.png"
+          src="~assets/image/Vector.png"
           @click="$router.go(-1)"
         />
         <h3 class="edit-contact">Edit Contact</h3>

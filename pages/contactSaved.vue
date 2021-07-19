@@ -1,7 +1,7 @@
 <template>
   <div>
     <img class="logo" src="~assets/image/logo 1.png" />
-    <img class="check" src="~assets/image/group 9.png" />
+    <img class="check" src="~assets/image/Group 9.png" />
     <div class="saved">
       <p class="contact">Contact Saved</p>
     </div>

@@ -4,11 +4,11 @@
       <button class="saved">
         <img
           class="left-arrow"
-          src="~assets/image/vector.png"
+          src="~assets/image/Vector.png"
           @click="$router.go(-1)"
         />
         Saved Contacts
-        <img class="plus" src="~assets/image/plus.png" />
+        <img class="plus" src="~assets/image/Plus.png" />
       </button>
     </div>
     <p class="email">
@@ -23,7 +23,7 @@
     </div>
     <div class="link">
       <nuxt-link to="/newContact"
-        ><img class="pluss" src="~assets/image/plus.png" />Add
+        ><img class="pluss" src="~assets/image/Plus.png" />Add
         Contact</nuxt-link
       >
     </div>

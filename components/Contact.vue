@@ -7,7 +7,7 @@
         <small>{{ contact.phone }}</small>
       </div>
     </div>
-    <img class="right-arrow" src="~assets/image/vector-2.png" />
+    <img class="right-arrow" src="~assets/image/Vector-2.png" />
   </div>
 </template>
 

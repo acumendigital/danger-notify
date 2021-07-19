@@ -2,15 +2,15 @@
   <div class="items">
     <nav class="nav-items">
       <div class="nav-item" @click="$router.push('/')">
-        <img src="~assets/image/house.png" />
+        <img src="~assets/image/House.png" />
         <div class="nav-title">Home</div>
       </div>
       <div class="nav-item" @click="$router.push('/contacts')">
-        <img src="~assets/image/phonecall.png" />
+        <img src="~assets/image/PhoneCall.png" />
         <div class="nav-title">Contacts</div>
       </div>
       <div class="nav-item" @click="$router.push('/profile')">
-        <img src="~assets/image/user.png" />
+        <img src="~assets/image/User.png" />
         <div class="nav-title">User</div>
       </div>
     </nav>

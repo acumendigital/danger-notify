@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import bottomNav from '~/components/bottomNav.vue'
+import bottomNav from '~/components/BottomNav.vue'
 export default {
   components: { bottomNav },
 }
